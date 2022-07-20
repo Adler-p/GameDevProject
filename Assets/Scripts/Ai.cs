@@ -46,7 +46,7 @@ public class Ai : MonoBehaviour
     {
         if (currentState == State.FREEZE)           
         {
-            Instantiate(ice,transform.position + transform.up*1,Quaternion.identity);   
+            Instantiate(ice,transform.position + transform.up*0.95f,Quaternion.identity);   
             currentState = State.FREEZED;                              
             StartCoroutine(waitForUnfreeze());                          
         }

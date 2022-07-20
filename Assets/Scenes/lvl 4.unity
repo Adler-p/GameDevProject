@@ -9640,7 +9640,7 @@ MonoBehaviour:
   coinText: {fileID: 221688839}
   Player1FreezeText: {fileID: 185484262}
   Player2FreezeText: {fileID: 105001321}
-  player2: {fileID: 4840425834625096825, guid: f263fc87ef25b1649a0b66747d9c2049, type: 3}
+  player2: {fileID: 9212224722415442434, guid: 0fd0ae7e05bdada498a8aa86d784d718, type: 3}
   player2Info: {fileID: 760719055}
   player1FreezeSlider: {fileID: 1952368667}
   player2FreezeSlider: {fileID: 1171215036}

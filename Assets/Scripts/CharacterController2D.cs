@@ -119,6 +119,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
                     anim.SetTrigger("Jump");
+                    SoundControl.instance.playSound("Jump");
                 }
             }
             else if(transform.tag == "Player2")
@@ -128,6 +129,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
                     anim.SetTrigger("Jump");
+                    SoundControl.instance.playSound("Jump");
                 }
             }
 

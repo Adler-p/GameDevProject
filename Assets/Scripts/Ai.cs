@@ -24,7 +24,9 @@ public class Ai : MonoBehaviour
     public GameObject ice;         
 
     [Header("Components")]
-    private Animator anim;          
+    private Animator anim;
+
+    public string hitterName;
 
     public enum State              
     {
@@ -46,8 +48,10 @@ public class Ai : MonoBehaviour
     {
         if (currentState == State.FREEZE)           
         {
-            Instantiate(ice,transform.position + transform.up*0.95f,Quaternion.identity);   
-            currentState = State.FREEZED;                              
+            SoundControl.instance.playSound("icedEnemySound");
+            GameObject obj = Instantiate(ice,transform.position + transform.up*0.95f,Quaternion.identity);   
+            currentState = State.FREEZED;
+            obj.GetComponent<FreezeControl>().hitterName = hitterName;
             StartCoroutine(waitForUnfreeze());                          
         }
         else if(currentState == State.FREEZED)  
@@ -100,9 +104,10 @@ public class Ai : MonoBehaviour
 
     }
 
-    public void freeze()
+    public void freeze(string tag)
     {
         currentState = State.FREEZE;
+        hitterName = tag;
     }
 
     IEnumerator waitForUnfreeze()

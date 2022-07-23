@@ -12,6 +12,7 @@ TagManager:
   - Box
   - coin
   - Ladder
+  - Ice
   layers:
   - Default
   - TransparentFX

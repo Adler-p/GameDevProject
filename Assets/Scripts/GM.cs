@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class GM : MonoBehaviour
 {
+    public int lev;
     public static GM instance;        
     public List<GameObject> healthUI;   //HP count
     public List<GameObject> healthUI2;  //HP count
+    public List<GameObject> star;
     public GameObject coinText;         //coin score text
     public GameObject Player1FreezeText;    //percentage frozen p1
     public GameObject Player2FreezeText;    //percentage frozen p1
@@ -20,24 +22,47 @@ public class GM : MonoBehaviour
 
     public Transform pos;                   //starting pos
 
+    public float finishTime = 10f;
+
+    private float currentTime;
+
     public GameObject mainPanel;            
     public GameObject failPanel;            
-    public GameObject successPanel;         
+    public GameObject successPanel;
+    public GameObject backGroundMusic;
+
+    public Text time;
 
     private int needCoinNum;            
     private int coinNum;                
     private int needFreezeNum;          
     [SerializeReference]private int currentPlayer1FreezeNum;    
-    [SerializeReference]private int currentPlayer2FreezeNum;    
+    [SerializeReference]private int currentPlayer2FreezeNum;
+
+    bool isReadyFinishedMusic = false;
+
+
+    private enum EndState
+    {
+        Default,
+        ReluctantlyWin,
+        Win,
+        CompleteWin
+    }
+
+    private EndState endState;
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         coinNum = 0;
+        currentTime = 0;
         needFreezeNum = GameObject.FindGameObjectsWithTag("canFreezeItem").Length;  
-        needCoinNum = GameObject.FindGameObjectsWithTag("coin").Length;             
-        
-        if(GameObject.Find("GameData").GetComponent<Data>().PlayerNum == 2)         
+        needCoinNum = GameObject.FindGameObjectsWithTag("coin").Length;
+        isReadyFinishedMusic = false;
+
+
+        if (Data.instance.PlayerNum == 2)         
         {
             Instantiate(player2,pos.position,Quaternion.identity);
             player2Info.SetActive(true);
@@ -46,12 +71,27 @@ public class GM : MonoBehaviour
         {
             player2Info.SetActive(false);
         }
-        
+
+        for (int i = 0; i < 3; i++)
+        {
+            star[i].SetActive(false);
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        time.text = ((int)(finishTime - currentTime)).ToString() + "s";
+        if(currentTime < finishTime)
+        {
+            currentTime += Time.deltaTime;
+        }
+        else
+        {
+            time.enabled = false;
+        }
+
         print(needFreezeNum);
         
         coinText.GetComponent<Text>().text = coinNum.ToString();
@@ -62,11 +102,17 @@ public class GM : MonoBehaviour
         Player2FreezeText.GetComponent<Text>().text = ((currentPlayer2FreezeNum * 100 / needFreezeNum)).ToString();
         player2FreezeSlider.value = (float)currentPlayer2FreezeNum / (float)needFreezeNum;
         
-        if(GameObject.Find("GameData").GetComponent<Data>().PlayerNum == 2)
+        if((Data.instance.PlayerNum == 2))
         {
             if(GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().playerHealth <= 0 && GameObject.FindGameObjectWithTag("Player2").GetComponent<CharacterController2D>().playerHealth <= 0)
             {
                 failPanel.SetActive(true);
+                if (isReadyFinishedMusic == false)
+                {
+                    isReadyFinishedMusic = true;
+                    SoundControl.instance.playSound("Fail");
+                    backGroundMusic.GetComponent<AudioSource>().Stop();
+                }
                 mainPanel.SetActive(false);
             }
         }
@@ -75,14 +121,71 @@ public class GM : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().playerHealth <= 0)
             {
                 failPanel.SetActive(true);
+                if (isReadyFinishedMusic == false)
+                {
+                    isReadyFinishedMusic = true;
+                    SoundControl.instance.playSound("Fail");
+                    backGroundMusic.GetComponent<AudioSource>().Stop();
+                }
                 mainPanel.SetActive(false);
             }
         }
 
-        if(currentPlayer1FreezeNum + currentPlayer2FreezeNum == needFreezeNum && coinNum == needCoinNum)
+        if(currentPlayer1FreezeNum + currentPlayer2FreezeNum == needFreezeNum)
         {
             successPanel.SetActive(true);
+            if (isReadyFinishedMusic == false)
+            {
+                isReadyFinishedMusic = true;
+                SoundControl.instance.playSound("Success");
+                backGroundMusic.GetComponent<AudioSource>().Stop();
+            }
             mainPanel.SetActive(false);
+
+            endState = EndState.ReluctantlyWin;
+
+            if (coinNum == needCoinNum)
+            {
+                endState = EndState.Win;
+
+                if(currentTime < finishTime)
+                {
+                    endState = EndState.CompleteWin;
+                }
+            }
+            if(endState == EndState.ReluctantlyWin)
+                Data.instance.setLev(1,lev);
+            else if (endState == EndState.Win)
+            {
+                Data.instance.setLev(2, lev);
+            }
+            else if (endState == EndState.CompleteWin)
+            {
+                Data.instance.setLev(3, lev);
+            }
+
+        }
+
+        switch (endState)
+        {
+            case EndState.ReluctantlyWin:
+                for(int i = 0; i < 1; i++)
+                {
+                    star[i].SetActive(true);
+                }
+                break;
+            case EndState.Win:
+                for (int i = 0; i < 2; i++)
+                {
+                    star[i].SetActive(true);
+                }
+                break;
+            case EndState.CompleteWin:
+                for (int i = 0; i < 3; i++)
+                {
+                    star[i].SetActive(true);
+                }
+                break;
         }
 
     }

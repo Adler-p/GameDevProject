@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FreezeControl : MonoBehaviour
 {
+    public string hitterName;
     public float deathTime = 10f;
     // Start is called before the first frame update
     void Start()

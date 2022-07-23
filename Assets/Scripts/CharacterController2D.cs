@@ -21,8 +21,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private bool isRun;
     [SerializeField] private bool isInvincibility = false;
     [SerializeField] private bool isFall = false;
-    [SerializeField] private bool hasWeapon = false;
-    [SerializeField] private bool isAttack = false;
+
 
     public Camera mainCamera;
     float moveDirection = 0;
@@ -91,12 +90,7 @@ public class CharacterController2D : MonoBehaviour
                     }
                 }
             }
-            if (hasWeapon)
-            {
-                isAttack = Input.GetMouseButtonDown(0);
-            }
-            if (isAttack)
-                anim.SetTrigger("Attack");
+
 
             // Change facing direction
             if (moveDirection != 0)
@@ -143,6 +137,7 @@ public class CharacterController2D : MonoBehaviour
         {
             moveDirection = 0;
             anim.SetBool("Death",true);
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 
@@ -195,7 +190,9 @@ public class CharacterController2D : MonoBehaviour
         float euler = Vector2.Angle(collision.transform.up, enemyToPlayer);          
         if (collision.gameObject.CompareTag("Enemy") && euler < 30 && euler > -30 && collision.gameObject.GetComponent<Ai>().currentState != Ai.State.FREEZED)   
         {
-            collision.transform.GetComponent<Ai>().freeze();
+            SoundControl.instance.playSound("iced");
+
+            collision.transform.GetComponent<Ai>().freeze(transform.tag);
             transform.GetComponent<Rigidbody2D>().velocity = Vector2.up * 5f;
         }
         else if (collision.gameObject.CompareTag("Enemy") && !isInvincibility && playerHealth > 0 && collision.gameObject.GetComponent<Ai>().currentState != Ai.State.FREEZED)
@@ -208,8 +205,8 @@ public class CharacterController2D : MonoBehaviour
     public void hit()
     {
         GM.instance.deleteHealth(playerHealth, transform.tag == "Player" ? 1 : 2);       
-        playerHealth -= 1;                                                          
-
+        playerHealth -= 1;
+        SoundControl.instance.playSound("Hurt");
         anim.SetTrigger("Hit");                                                     
         r2d.velocity = Vector2.up * 5f;                                             
         StartCoroutine(flash());                                                    
@@ -244,8 +241,4 @@ public class CharacterController2D : MonoBehaviour
         isInvincibility = false;    
     }
 
-    public void getWeapon()
-    {
-        hasWeapon = true;
-    }
 }

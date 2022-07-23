@@ -11,6 +11,14 @@ public class ButtonControl : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Player" || collision.transform.tag == "Player2" || collision.transform.tag == "Box")
+        {
+            SoundControl.instance.playSound("MoveFloor");
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.transform.tag == "Player" || collision.transform.tag == "Player2" || collision.transform.tag == "Box") 

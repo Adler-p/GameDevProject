@@ -14,9 +14,9 @@ public class AddUpForce : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //detect collision with player 
-        
         if(collision.transform.tag == "Player" || collision.transform.tag == "Player2")
         {
+            SoundControl.instance.playSound("Bounce");
             collision.transform.GetComponent<Rigidbody2D>().velocity = Vector2.up * force;
         }
     }

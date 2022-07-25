@@ -14,13 +14,19 @@ public class FloorMove : MonoBehaviour
 
     private Vector3 origin;
     private Vector3 direction;
+    private bool isMove = false;
     public void startMove()
     {
-        StartCoroutine(move());     
+        if (isMove == true)
+            return;
+        isMove = true;
+        StartCoroutine(move());
     }
     public void stopMove()
     {
-        StopAllCoroutines();
+        if (isMove == true)
+            StopAllCoroutines();
+        isMove = false;
     }
 
     IEnumerator move()
@@ -35,18 +41,21 @@ public class FloorMove : MonoBehaviour
             origin = Vector3.right;
             direction = Vector3.left;
         }
-        while (true)
+        print(isMove);
+        while (isMove)
         {
+            print((transform.localPosition.y < maxHeight || !isVertial));
+            print((isVertial || transform.localPosition.x < rightBoundary));
             float currentTime = 0;
-            while (currentTime < moveTime && transform.localPosition.y < maxHeight && (isVertial || transform.localPosition.x < rightBoundary))
+            while (currentTime < moveTime && (transform.localPosition.y < maxHeight || !isVertial) && (isVertial || transform.localPosition.x < rightBoundary))
             {
                 yield return new WaitForSeconds(0.01f);
                 currentTime += 0.01f;
                 transform.position += origin * moveSpeed * Time.deltaTime;
             }
-
+            print("jin");
             currentTime = 0;
-            while (currentTime < moveTime && transform.localPosition.y > lowHeight && (isVertial || transform.localPosition.x > leftBoundary))
+            while (currentTime < moveTime && (transform.localPosition.y > lowHeight || !isVertial) && (isVertial || transform.localPosition.x > leftBoundary))
             {
                 yield return new WaitForSeconds(0.01f);
                 currentTime += 0.01f;

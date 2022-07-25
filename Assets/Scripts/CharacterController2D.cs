@@ -206,7 +206,7 @@ public class CharacterController2D : MonoBehaviour
     {
         GM.instance.deleteHealth(playerHealth, transform.tag == "Player" ? 1 : 2);       
         playerHealth -= 1;
-        SoundControl.instance.playSound("Hurt");
+        SoundControl.instance.playSound("hurt");
         anim.SetTrigger("Hit");                                                     
         r2d.velocity = Vector2.up * 5f;                                             
         StartCoroutine(flash());                                                    

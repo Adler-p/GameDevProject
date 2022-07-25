@@ -63,45 +63,41 @@ public class SoundControl : MonoBehaviour
             audioSource.clip = allClip[3];
             audioSource.Play();
         }
-        else if (name.Equals("Bounce"))
-        {
-            audioSource.clip = allClip[7];
-            audioSource.Play();
-        }
         else if (name.Equals("MoveFloor"))
         {
-            audioSource.clip = allClip[8];
+            audioSource.clip = allClip[4];
             audioSource.Play();
         }
-        else if (name.Equals("Hurt"))
+        else if (name.Equals("hurt"))
         {
-            audioSource.clip = allClip[9];
-            audioSource.time = 1;
+            audioSource.clip = allClip[5];
             audioSource.Play();
         }
         else if (name.Equals("icedEnemySound"))
         {
-            audioSource.clip = allClip[10];
+            audioSource.clip = allClip[6];
+            audioSource.time = 1;
             audioSource.Play();
         }
         else if (name.Equals("iceGround"))
         {
-            audioSource.clip = allClip[11];
+            audioSource.clip = allClip[7];
             audioSource.Play();
         }
+        
         else if (name.Equals("Fail"))
         {
-            audioSource.clip = allClip[12];
+            audioSource.clip = allClip[8];
             audioSource.Play();
         }
         else if (name.Equals("Success"))
         {
-            audioSource.clip = allClip[13];
+            audioSource.clip = allClip[9];
             audioSource.Play();
         }
         else if (name.Equals("UIClick"))
         {
-            audioSource.clip = allClip[14];
+            audioSource.clip = allClip[10];
             audioSource.Play();
         }
     }

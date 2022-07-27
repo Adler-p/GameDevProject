@@ -58,8 +58,8 @@ public class CharacterController2D : MonoBehaviour
         {
             if (transform.tag == "Player")      
             {
-                isRun = Input.GetKey(KeyCode.LeftShift);
-
+                //isRun = Input.GetKey(KeyCode.LeftShift);
+                isRun = true;
                 // Movement controls
                 if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
                 {
@@ -75,7 +75,7 @@ public class CharacterController2D : MonoBehaviour
             }
             else if(transform.tag == "Player2")     
             {
-                isRun = Input.GetKey(KeyCode.Keypad1);
+                isRun = true;
 
                 // Movement controls
                 if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))

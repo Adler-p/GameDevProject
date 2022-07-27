@@ -30,6 +30,8 @@ public class StarControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        Time.timeScale = 1;
         for (int i = 0; i < Data.instance.starNumInLev1; i++)
         {
             Lev1Star[i].SetActive(true);

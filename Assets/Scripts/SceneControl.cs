@@ -14,13 +14,17 @@ public class SceneControl : MonoBehaviour
         Application.Quit();
     }
 
-    public void ResertGame(int sceneID) 
+    public void ResetGame() 
     {
-        SceneManager.LoadScene(sceneID);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
 
     public void returnToMenu()      
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
+        
     }
 }

@@ -25,6 +25,7 @@ public class Ai : MonoBehaviour
 
     [Header("Components")]
     private Animator anim;
+    private Rigidbody2D rid;
 
     public string hitterName;
 
@@ -40,6 +41,7 @@ public class Ai : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        rid = GetComponent<Rigidbody2D>();
         currentState = State.WALK;     
     }
 
@@ -56,7 +58,8 @@ public class Ai : MonoBehaviour
         }
         else if(currentState == State.FREEZED)  
         {   
-            anim.speed = 0;    
+            anim.speed = 0;
+            rid.velocity = Vector2.zero;
         }
         else if(currentState == State.WALK)
         {

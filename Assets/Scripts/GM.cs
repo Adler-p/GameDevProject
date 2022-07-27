@@ -54,6 +54,7 @@ public class GM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         instance = this;
         coinNum = 0;
         currentTime = 0;
@@ -61,7 +62,7 @@ public class GM : MonoBehaviour
         needCoinNum = GameObject.FindGameObjectsWithTag("coin").Length;
         isReadyFinishedMusic = false;
 
-
+        
         if (Data.instance.PlayerNum == 2)         
         {
             Instantiate(player2,pos.position,Quaternion.identity);
@@ -76,6 +77,8 @@ public class GM : MonoBehaviour
         {
             star[i].SetActive(false);
         }
+
+        print(needFreezeNum);
 
     }
 
@@ -107,6 +110,7 @@ public class GM : MonoBehaviour
             if(GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().playerHealth <= 0 && GameObject.FindGameObjectWithTag("Player2").GetComponent<CharacterController2D>().playerHealth <= 0)
             {
                 failPanel.SetActive(true);
+                Time.timeScale = 0;
                 if (isReadyFinishedMusic == false)
                 {
                     isReadyFinishedMusic = true;
@@ -121,6 +125,7 @@ public class GM : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().playerHealth <= 0)
             {
                 failPanel.SetActive(true);
+                Time.timeScale = 0;
                 if (isReadyFinishedMusic == false)
                 {
                     isReadyFinishedMusic = true;
@@ -134,6 +139,8 @@ public class GM : MonoBehaviour
         if(currentPlayer1FreezeNum + currentPlayer2FreezeNum == needFreezeNum)
         {
             successPanel.SetActive(true);
+            Time.timeScale = 0;
+            
             if (isReadyFinishedMusic == false)
             {
                 isReadyFinishedMusic = true;

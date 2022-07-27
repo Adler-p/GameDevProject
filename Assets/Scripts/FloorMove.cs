@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class FloorMove : MonoBehaviour
 {
-    public float moveTime = 2f;     
+    public float moveTime = 2f;
     public float moveSpeed = 2f;
     public bool isVertial;
-    public float maxHeight;         
-    public float rightBoundary;         
+    public float maxHeight;
+    public float rightBoundary;
     public float lowHeight;
     public float leftBoundary;
+
+    public static float max = 99999;
+    public static float min = -99999;
 
     private Vector3 origin;
     private Vector3 direction;
@@ -35,11 +38,15 @@ public class FloorMove : MonoBehaviour
         {
             origin = Vector3.up;
             direction = Vector3.down;
+            rightBoundary = max;
+            leftBoundary = min;
         }
         else
         {
             origin = Vector3.right;
             direction = Vector3.left;
+            maxHeight = max;
+            lowHeight = min;
         }
         print(isMove);
         while (isMove)

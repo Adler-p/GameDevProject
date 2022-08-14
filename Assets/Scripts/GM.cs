@@ -62,7 +62,6 @@ public class GM : MonoBehaviour
         needCoinNum = GameObject.FindGameObjectsWithTag("coin").Length;
         isReadyFinishedMusic = false;
 
-        
         if (Data.instance.PlayerNum == 2)         
         {
             Instantiate(player2,pos.position,Quaternion.identity);
@@ -78,7 +77,7 @@ public class GM : MonoBehaviour
             star[i].SetActive(false);
         }
 
-        print(needFreezeNum);
+        //print(needFreezeNum);
 
     }
 
@@ -199,11 +198,36 @@ public class GM : MonoBehaviour
     public void deleteHealth(int playerHealth,int lev)
     {
         if (lev == 1)
-            Destroy(healthUI[playerHealth-1]);
+            healthUI[playerHealth - 1].SetActive(false);
         else
-            Destroy(healthUI2[playerHealth - 1]);
+            healthUI2[playerHealth - 1].SetActive(false);
     }
 
+    public void addHealth(int playerHealth, int lev)
+    {
+        print(playerHealth + "     k      " +lev);
+        if (lev == 1)
+            healthUI[playerHealth - 1].SetActive(true);
+        else
+            healthUI2[playerHealth - 1].SetActive(true);
+
+    }
+    public bool isOpen = true;
+    [SerializeField]private Sprite lastSprite;
+    public Sprite sprite;
+    public void CloseOrOpen(Image image)
+    {
+        if (isOpen)
+        { 
+            lastSprite = image.sprite;
+            image.sprite = sprite;
+            isOpen = false;
+        }
+        else{
+            image.sprite = lastSprite;
+            isOpen = true;
+        }
+    }
     
     public void addCoin()
     {

@@ -787,6 +787,7 @@ MonoBehaviour:
   rightArm: {fileID: 9120922520097935901}
   leftArm: {fileID: 9121617816905277273}
   ice: {fileID: 5853294876775687343, guid: a1d393020608e46438bdbe4e8c0020ac, type: 3}
+  hitterName: 
   currentState: 0
 --- !u!50 &-7015435078788850798
 Rigidbody2D:

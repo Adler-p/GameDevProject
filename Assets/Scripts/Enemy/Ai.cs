@@ -29,6 +29,8 @@ public class Ai : MonoBehaviour
 
     public string hitterName;
 
+    public bool back;
+
     public enum State              
     {
         IDEL,
@@ -48,6 +50,7 @@ public class Ai : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        back = needTurnToBack();
         if (currentState == State.FREEZE)           
         {
             SoundControl.instance.playSound("icedEnemySound");
@@ -95,7 +98,7 @@ public class Ai : MonoBehaviour
         Ray2D ray = new Ray2D(transform.position + transform.right*offect,-transform.up); 
         //RaycastHit2D hit;
         Debug.DrawRay(ray.origin,ray.direction,Color.red);
-        if (Physics2D.Raycast(ray.origin, ray.direction, rayLen))      
+        if (Physics2D.Raycast(ray.origin, ray.direction, rayLen,LayerMask.GetMask("Ground")))      
         {
             return false;
         }

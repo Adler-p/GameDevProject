@@ -106,6 +106,7 @@ public class SoundControl : MonoBehaviour
         }
         else if (name.Equals("UIClick"))
         {
+            //print("enter");
             audioSource.clip = allClip[10];
             audioSource.time = 0f;
             audioSource.Play();

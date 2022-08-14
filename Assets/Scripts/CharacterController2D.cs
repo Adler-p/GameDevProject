@@ -14,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
     public float jumpHeight = 6.5f;
     public float gravityScale = 1.5f;       
     public float flashTime = 0.2f;          
-    public int playerHealth = 3;            
+    public int playerHealth = 3;     
 
     [SerializeField]private bool facingRight = true;
     [SerializeField] private bool isGrounded = false;   
@@ -239,6 +239,11 @@ public class CharacterController2D : MonoBehaviour
             num++;
         }
         isInvincibility = false;    
+    }
+
+    public void setInvincible(bool isInvin)
+    {
+        isInvincibility = isInvin;
     }
 
 }

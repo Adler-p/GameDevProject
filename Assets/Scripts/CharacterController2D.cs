@@ -119,7 +119,7 @@ public class CharacterController2D : MonoBehaviour
             else if(transform.tag == "Player2")
             {
                 // Jumping
-                if (Input.GetKeyDown(KeyCode.Keypad2) && isGrounded)
+                if (Input.GetKeyDown(KeyCode.RightShift) && isGrounded)
                 {
                     r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
                     anim.SetTrigger("Jump");

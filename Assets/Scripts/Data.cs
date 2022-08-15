@@ -19,6 +19,10 @@ public class Data : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
         DontDestroyOnLoad(transform.gameObject);
     }
 

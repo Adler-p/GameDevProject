@@ -11,10 +11,10 @@ public class SceneControl : MonoBehaviour
 
     private void LateUpdate()
     {
-        print(currentTime);
+        //print(currentTime);
         if (!name.Equals(""))
         {
-            print(currentTime);
+            //print(currentTime);
             currentTime += 0.01f;
             if (name.Equals("restart") && currentTime > time)
             {
@@ -48,5 +48,15 @@ public class SceneControl : MonoBehaviour
     {
         Time.timeScale = 1;
         name = "return";
+    }
+
+    public void single()
+    {
+        Data.instance.setSinglePlayer();
+    }
+
+    public void muti()
+    {
+        Data.instance.setMultiplayer();
     }
 }

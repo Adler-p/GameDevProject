@@ -215,17 +215,25 @@ public class GM : MonoBehaviour
     public bool isOpen = true;
     [SerializeField]private Sprite lastSprite;
     public Sprite sprite;
+    public Sprite sprite2;
+
     public void CloseOrOpen(Image image)
     {
-        if (isOpen)
-        { 
+        if(sprite == null)
+        {
+            sprite = GameObject.Find("Base").GetComponent<SpriteRenderer>().sprite;
+        }   
+        print("begin");
+        if (image.sprite != sprite)
+        {
+            print(sprite);
             lastSprite = image.sprite;
             image.sprite = sprite;
-            isOpen = false;
+            //isOpen = false;
         }
         else{
             image.sprite = lastSprite;
-            isOpen = true;
+            //isOpen = true;
         }
     }
     

@@ -13,6 +13,7 @@ TagManager:
   - coin
   - Ladder
   - Ice
+  - Line
   layers:
   - Default
   - TransparentFX

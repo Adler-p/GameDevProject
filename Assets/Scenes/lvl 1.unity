@@ -499,7 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bad1772ca5a0314d9b30a6515d5cdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
   currentTime: 0
 --- !u!4 &40898001 stripped
 Transform:
@@ -2375,7 +2374,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -4
+  m_SortingOrder: -7
   m_Sprite: {fileID: 21300000, guid: 6f53ce23c1194824db1b16d239727e49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -12369,7 +12368,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: -7
   m_Sprite: {fileID: 21300000, guid: 89755524fa0f34ca8ad3d6f71a590881, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -18553,7 +18552,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -8
   m_Sprite: {fileID: 21300000, guid: ed356a24948564ac7ac128d804a1c3bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -855,7 +855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211535957}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.4276, y: -1.1483, z: 0.1600896}
+  m_LocalPosition: {x: -7.89, y: -1.1483, z: 0.1600896}
   m_LocalScale: {x: 3.3160892, y: 3.3394527, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1516,7 +1516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8805565507487545104, guid: d512e5f9f2edcc54c96b6f66bc902ba2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.4075172
+      value: 2.414
       objectReference: {fileID: 0}
     - target: {fileID: 8805565507487545104, guid: d512e5f9f2edcc54c96b6f66bc902ba2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4117,7 +4117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845100631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.077517, y: -7.0674796, z: 0}
+  m_LocalPosition: {x: 18.12, y: -7.0674796, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5746,7 +5746,7 @@ MonoBehaviour:
   player1FreezeSlider: {fileID: 1952368667}
   player2FreezeSlider: {fileID: 1171215036}
   pos: {fileID: 767363423}
-  finishTime: 50
+  finishTime: 40
   mainPanel: {fileID: 26376332}
   failPanel: {fileID: 1692315726}
   successPanel: {fileID: 1102822285}
@@ -7190,7 +7190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4951319615926667234, guid: 09908a4341a0f0f4d9602d304440041c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.987516
+      value: 18.014
       objectReference: {fileID: 0}
     - target: {fileID: 4951319615926667234, guid: 09908a4341a0f0f4d9602d304440041c, type: 3}
       propertyPath: m_LocalPosition.y
